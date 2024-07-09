@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="500e2041-41a0-41ca-8dfd-333512cc71a3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceAssign/interface2/FactoryExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceAssign/interface2/FactoryExample.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,22 +58,13 @@
       <workItem from="1719881225038" duration="1022000" />
       <workItem from="1719882258800" duration="5000" />
       <workItem from="1719906145541" duration="2701000" />
-      <workItem from="1719908862344" duration="762000" />
+      <workItem from="1719908862344" duration="913000" />
+      <workItem from="1719966192619" duration="1360000" />
+      <workItem from="1720483314775" duration="1676000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/interfaceAssign/interface2/FactoryExample.java</url>
-          <line>36</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

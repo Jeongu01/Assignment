@@ -35,13 +35,7 @@ public class FactoryExample {
         "* " + mainFactory.getFactoryName() + " 공장의 하루 생산량과 파트너 공장 협력 시 추가 생산량은 다음과 같다.");
     // TODO
     System.out.println("1. 하루 생산량 = " + mainFactory.makeProducts(mainFactorySkill));
-    int additionalProduct = 0;
-    if (mainFactory instanceof CarFactory carFactory) {
-      additionalProduct = carFactory.workTogether(partner);
-    } else if (mainFactory instanceof  TVFactory tvFactory) {
-      additionalProduct = tvFactory.workTogether(partner);
-    }
-    System.out.println("2. 파트너 공장 [" + ((Factory) partner).getFactoryName() + "] 협력 시 추가 생산량 = " + additionalProduct);
+    System.out.println("2. 파트너 공장 [" + ((Factory) partner).getFactoryName() + "] 협력 시 추가 생산량 = " + partner.workTogether(partner));
 
     System.out.println("--------------------------------------------------------------");
   }
