@@ -9,7 +9,7 @@ public class CellPhone {
     this.model = model;
   }
 
-  void call(int time) throws IllegalArgumentException {
+  void call(int time) {
     try {
       if (time < 0) {
         throw new IllegalArgumentException("통화시간입력오류");
