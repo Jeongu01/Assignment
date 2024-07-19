@@ -1,6 +1,5 @@
-package board.dto;
+package board.dao;
 
-import board.dao.BoardDBIO;
 import board.vo.Board;
 import java.util.ArrayList;
 

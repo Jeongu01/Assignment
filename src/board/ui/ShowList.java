@@ -1,6 +1,6 @@
-package board.menu;
+package board.ui;
 
-import board.dto.BoardManager;
+import board.dao.BoardManager;
 import board.vo.Board;
 import java.util.ArrayList;
 

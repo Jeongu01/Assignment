@@ -1,8 +1,8 @@
-package board.menu;
+package board.ui;
 
-import board.dto.BoardManager;
-import board.dto.CreateBoard;
-import board.dto.ReadBoard;
+import board.dao.BoardManager;
+import board.dao.CreateBoard;
+import board.dao.ReadBoard;
 import board.vo.Board;
 import java.io.BufferedReader;
 import java.io.IOException;

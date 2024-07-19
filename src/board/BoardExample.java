@@ -1,8 +1,8 @@
 package board;
 
-import board.dto.BoardManager;
-import board.menu.ShowList;
-import board.menu.ShowMenu;
+import board.dao.BoardManager;
+import board.ui.ShowList;
+import board.ui.ShowMenu;
 
 public class BoardExample {
 

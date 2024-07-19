@@ -1,16 +1,17 @@
-package board.dto;
+package board.dao;
 
 import board.vo.Board;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class CreateBoard {
-  public static Board create() throws IOException {
+public class UpdateBoard {
+
+  public static Board update() throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     Board board = new Board();
 
-    System.out.println("[새 게시물 입력]");
+    System.out.println("[수정 내용 입력]");
     System.out.print("제목: ");
     board.setBtitle(br.readLine());
     System.out.print("내용: ");
@@ -20,4 +21,5 @@ public class CreateBoard {
 
     return board;
   }
+
 }

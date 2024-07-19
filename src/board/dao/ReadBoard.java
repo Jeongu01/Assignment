@@ -1,4 +1,4 @@
-package board.dto;
+package board.dao;
 
 import board.vo.Board;
 import java.io.BufferedReader;
