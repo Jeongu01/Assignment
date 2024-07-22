@@ -1,18 +1,16 @@
 package board;
 
-import board.dao.BoardManager;
-import board.ui.ShowList;
-import board.ui.ShowMenu;
+import board.ui.MenuManager;
 
 public class BoardExample {
 
-  static BoardManager boardManager = BoardManager.getInstance();
-
   public static void main(String[] args) {
+    MenuManager menu = new MenuManager();
+
     boolean quit = false;
     while (!quit) {
-      ShowList.list(boardManager);
-      quit = ShowMenu.mainMenu(boardManager);
+      menu.list();
+      quit = menu.mainMenu();
     }
   }
 

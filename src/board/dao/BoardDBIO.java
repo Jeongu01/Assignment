@@ -1,115 +1,75 @@
 package board.dao;
 
-import board.vo.Board;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
+import java.sql.Statement;
 
-public abstract class BoardDBIO extends ObjectDBIO {
+public class BoardDBIO {
 
-  public ArrayList<Board> getBoardList() {
-    ArrayList<Board> boardList = new ArrayList<>();
-    String query = "SELECT * FROM post";
-    ResultSet rs = null;
+  private Connection connection = null;
+  private String url = "jdbc:mysql://localhost:3306/board?characterEncoding=UTF-8&serverTimezone=UTC";
+  private String id = "root";
+  private String pwd = "asd1234";
 
+  public void setUrl(String url) {
+    this.url = url;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public void setPwd(String pwd) {
+    this.pwd = pwd;
+  }
+
+  private boolean open() {
     try {
-      rs = super.execute(query, rs);
-      while (rs.next()) {
-        Board board = getBoard(rs);
-        boardList.add(board);
-      }
-      rs.close();
-      super.close();
+      connection = DriverManager.getConnection(url, id, pwd);
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return false;
+    }
+  }
+
+  protected boolean close() {
+    try {
+      connection.close();
+      return true;
+    } catch (SQLException e) {
+      System.out.println(e.getMessage());
+      return false;
+    }
+  }
+
+  // select 쿼리문
+  protected ResultSet execute(String query, ResultSet rs) {
+    try {
+      open();
+      Statement obj = connection.createStatement();
+      rs = obj.executeQuery(query);
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    return boardList;
+    return rs;
   }
 
-  public boolean createBoard(Board board) {
-    String title = board.getBtitle();
-    String content = board.getBcontent();
-    String writer = board.getBwriter();
-
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
-    Calendar calendar = Calendar.getInstance();
-    String date = sdf.format(calendar.getTime());
-
-    String query = "INSERT INTO post VALUES (" +
-                    "NULL, '" +
-                    title + "', '" +
-                    content + "', '" +
-                    writer + "', '" +
-                    date + "')";
-    super.execute(query);
-    super.close();
-    return true;
-  }
-
-  public Board readBoard(int no) {
-    Board board = new Board();
-    String query = "SELECT bno, title, content, writer, date " +
-                   "FROM post " +
-                   "WHERE bno=" +
-                   no;
-    ResultSet rs = null;
-
+  // insert, delete, update 쿼리문
+  protected boolean execute(String query) {
+    boolean returnValue = false;
     try {
-      rs = super.execute(query, rs);
-      while (rs.next()) {
-        board = getBoard(rs);
+      open();
+      Statement obj = connection.createStatement();
+      int result = obj.executeUpdate(query);
+      if (result == 1) {
+        returnValue = true;
       }
-      super.close();
     } catch (SQLException e) {
-      e.printStackTrace();
+      System.out.println(e.getMessage());
     }
-    return board;
+    return returnValue;
   }
-
-  public boolean updateBoard(int bno, Board board) {
-    String title = board.getBtitle();
-    String content = board.getBcontent();
-    String writer = board.getBwriter();
-
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
-    Calendar calendar = Calendar.getInstance();
-    String date = sdf.format(calendar.getTime());
-
-    String query = "UPDATE post SET " +
-        "title = '" + title +
-        "', content = '" + content +
-        "', writer = '" + writer +
-        "', date = '" + date +
-        "' WHERE bno = " + bno;
-    super.execute(query);
-    super.close();
-    return true;
-  }
-
-  public boolean deleteBoard(int bno) {
-    String query = "DELETE FROM post WHERE bno = " + bno;
-    super.execute(query);
-    super.close();
-    return true;
-  }
-
-  public boolean clearBoard() {
-    String query = "DELETE FROM post";
-    super.execute(query);
-    super.close();
-    return true;
-  }
-
-  private Board getBoard(ResultSet rs) throws SQLException{
-    int bno = rs.getInt(1);
-    String title = rs.getString(2);
-    String content = rs.getString(3);
-    String writer = rs.getString(4);
-    String date = rs.getString(5);
-
-    return new Board(bno, title, content, writer, date);
-  }
-
 }
