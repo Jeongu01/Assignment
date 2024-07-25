@@ -87,12 +87,8 @@ from employees;
 
 -- A.4
 -- Q 0
-select *
-from employees
-where employee_id not in (select mgr.employee_id
-                          from employees emp,
-                               employees mgr
-                          where emp.manager_id = mgr.employee_id);
+select count(distinct manager_id)
+from employees;
 -- Q 1
 select concat('$', format(sum(salary), '#,#')) '급여 합계',
         concat('$', format(avg(salary), '#,#')) '급여 평균',
