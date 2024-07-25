@@ -95,6 +95,7 @@ select concat('$', format(sum(salary), '#,#')) '급여 합계',
         concat('$', format(max(salary), '#,#')) '급여 최대값',
         concat('$', format(min(salary), '#,#')) '급여 최소값'
 from employees
+where department_id is not null
 group by department_id
 order by department_id;
 -- Q 2
